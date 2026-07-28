@@ -1,45 +1,18 @@
-# CLRTY-MIS-Kernel (`misc`)
+# CLRTY-MIS-Kernel
 
-Sole active **MIS** compiler kernel for CLRTY-1 / chain **1202**.
+**Moniversive invariant static — `bin/misc` only** (see [mis_kernel_active_only.json](../../CLRTY_SUBSTRATE/boot/mis_kernel_active_only.json)).
 
-Foreign kernels (`python3 … clrtyc.py`, `solc`, `forge`, `hardhat`, …) are **hard-refused (exit 3)**.
-
-## Install + smoke test
-
-Clone into any empty directory (not inside an existing `CLRTY-MIS-Kernel` tree):
-
-```bash
-git clone https://github.com/clarity-fintech/CLRTY-MIS-Kernel.git
-cd CLRTY-MIS-Kernel
-bash scripts/download_misc_kernel.sh
-./bin/misc path.mis --check --compact-letters
-```
-
-`path.mis` is a **real** MIS module (`KernelSwapToMis`) — file-type + kernel swap to `misc`. Also at `src/kernel_swap_to_mis.mis`.
-
-Prebuilt (this package): `bin/misc-darwin-arm64` — checksums in `bin/SHA256SUMS.txt`.
-
-From source:
+| Field | Value |
+|--------|--------|
+| Settlement | **clrty-1** · chain **1202** |
+| Compiler | `bin/misc` |
+| Layout | `mis/commands/*.mis` (command catalog + network bind) |
 
 ```bash
-cd src/misc && cargo build --release
-cp target/release/misc ../../bin/misc
+export CLRTY_ROOT=/path/to/CLRTY_PROJECT
+export MISC="$CLRTY_ROOT/bin/misc"
+make commands-check
+make network-connect
 ```
 
-## Monorepo maintainers (not this clone)
-
-`make sync-mis-kernel` / `make push-mis-kernel` live in the **CLRTY project root**, not inside this kernel repo.
-
-## Modules
-
-| File | Role |
-|------|------|
-| `src/misc.mis` | Kernel surface |
-| `src/mis_kernel.mis` | Native packs 776..=875 |
-| `manifests/mis_kernel_active_only.json` | Active-only policy |
-
-## Policy
-
-- Active kernel: **`misc` only**
-- Extension: **`.mis`** (`.clrty` legacy)
-- Settlement: **clrty-1 / 1202**
+See also `MIS_KERNEL.md`.

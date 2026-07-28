@@ -1,0 +1,32 @@
+// Moniversive Invariant Static (MIS) — deep root
+// Creator: Chandler William Ferguson
+// Command catalog closure for clarity-fintech/CLRTY-MIS-Kernel
+// Compile: bin/misc <file>.mis --check --compact-letters
+
+module CLRTYMISKernelCommandCatalog {
+
+  
+
+  invariant letter_hash_bound: letter_hash_root != @0;
+  invariant deep_root_moniversive: deep_root == moniversive;
+  invariant settlement_chain: chain_id == 1202;
+  invariant kernel_is_misc: compiler_kernel == misc;
+  invariant extension_mis: source_extension == mis;
+  invariant domain_bound: domain == mis_kernel;
+  invariant catalog_bound: command_catalog_bound == true;
+  invariant creator_bound: creator == chandler_william_ferguson;
+
+  outcome list_commands() {
+    constraint command_catalog_bound == true;
+  }
+
+  outcome attest_catalog(digest: Bytes) {
+    require digest != @0;
+    constraint catalog_attested == true;
+  }
+
+  outcome settle_clrty1(intent: Bytes) {
+    require intent != @0;
+    constraint chain_id == 1202;
+  }
+}
